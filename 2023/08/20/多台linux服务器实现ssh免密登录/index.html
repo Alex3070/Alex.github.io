@@ -16,23 +16,24 @@
   <meta name="author" content="Alex Ma">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="ssh基于密钥的免密登录假设我们要在三台Linux服务器（Linux121、Linux122、Linux123）上实现免密登录第一步：在三台Linux服务器上生成公钥和私钥 123#ssh-keygen [参数]#-t 指定密钥创建的类型，SSH-v1可选的值为rsa1，SSH-v2可选的值为rsa或dsassh-keygen -t rsa 执行结果： 1234567891011121314151">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://alex3070.github.io/2023/08/09/hello-world/index.html">
+<meta property="og:title" content="多台linux服务器实现ssh免密登录">
+<meta property="og:url" content="https://alex3070.github.io/2023/08/20/%E5%A4%9A%E5%8F%B0linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/index.html">
 <meta property="og:site_name" content="Alex Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="ssh基于密钥的免密登录假设我们要在三台Linux服务器（Linux121、Linux122、Linux123）上实现免密登录第一步：在三台Linux服务器上生成公钥和私钥 123#ssh-keygen [参数]#-t 指定密钥创建的类型，SSH-v1可选的值为rsa1，SSH-v2可选的值为rsa或dsassh-keygen -t rsa 执行结果： 1234567891011121314151">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-09T15:53:52.500Z">
-<meta property="article:modified_time" content="2023-08-06T14:21:36.409Z">
+<meta property="article:published_time" content="2023-08-20T12:14:34.000Z">
+<meta property="article:modified_time" content="2023-08-20T13:29:02.308Z">
 <meta property="article:author" content="Alex Ma">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Hello World - Alex Blog</title>
+  <title>多台linux服务器实现ssh免密登录 - Alex Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -225,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="多台linux服务器实现ssh免密登录"></span>
           
         </div>
 
@@ -236,8 +237,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-09 23:53" pubdate>
-          2023年8月9日 晚上
+        <time datetime="2023-08-20 20:14" pubdate>
+          2023年8月20日 晚上
         </time>
       </span>
     
@@ -248,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 字
+          2.8k 字
         
       </span>
     
@@ -259,7 +260,7 @@
         
         
         
-          4 分钟
+          23 分钟
         
       </span>
     
@@ -304,25 +305,27 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">多台linux服务器实现ssh免密登录</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+                <h2 id="ssh基于密钥的免密登录"><a href="#ssh基于密钥的免密登录" class="headerlink" title="ssh基于密钥的免密登录"></a>ssh基于密钥的免密登录</h2><p>假设我们要在三台Linux服务器（Linux121、Linux122、Linux123）上实现免密登录<br><strong>第一步：在三台Linux服务器上生成公钥和私钥</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#ssh-keygen [参数]</span><br><span class="hljs-comment">#-t 指定密钥创建的类型，SSH-v1可选的值为rsa1，SSH-v2可选的值为rsa或dsa</span><br>ssh-keygen -t rsa<br></code></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh-keygen -t rsa<br>Generating public/private rsa key pair.<br>Enter file <span class="hljs-keyword">in</span> <span class="hljs-built_in">which</span> to save the key (/root/.ssh/id_rsa): <br>Your identification has been saved <span class="hljs-keyword">in</span> /root/.ssh/id_rsa.<br>Your public key has been saved <span class="hljs-keyword">in</span> /root/.ssh/id_rsa.pub.<br>The key fingerprint is:<br>SHA256:YQPA+p6fvsLr1Y7mnZVnIsCxXslf+tiOGLbv/zFTSJ0 root@linux122<br>The key<span class="hljs-string">&#x27;s randomart image is:</span><br><span class="hljs-string">+---[RSA 2048]----+</span><br><span class="hljs-string">|   ....          |</span><br><span class="hljs-string">|    .  .       ..|</span><br><span class="hljs-string">|   .  . +     .E.|</span><br><span class="hljs-string">|  .  . = +   . . |</span><br><span class="hljs-string">|   .  + S   . . .|</span><br><span class="hljs-string">|    .. + . +   . |</span><br><span class="hljs-string">|   o .o = * o +  |</span><br><span class="hljs-string">|    =..* B O   + |</span><br><span class="hljs-string">|   .oBB.*o=o=..  |</span><br><span class="hljs-string">+----[SHA256]-----+</span><br></code></pre></td></tr></table></figure>
+<p>使用<code>ssh-kengen</code>会在<code>~/.ssh/</code>目录下生成两个文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">id_rsa：私钥文件<br>id_rsa.pub：公钥文件<br></code></pre></td></tr></table></figure>
+<p><strong>第二步：以一台Linux服务器（Linux121）作为主机，其他Linux服务器（Linux122、Linux123）将公钥发送给Linux121</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#ssh-copy-id 主机名/IP地址</span><br>ssh-copy-id Linux121<br></code></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@linux123 .ssh]<span class="hljs-comment"># ssh-copy-id linux121</span><br>/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: <span class="hljs-string">&quot;/root/.ssh/id_rsa.pub&quot;</span><br>The authenticity of host <span class="hljs-string">&#x27;linux121 (192.168.80.121)&#x27;</span> can<span class="hljs-string">&#x27;t be established.</span><br><span class="hljs-string">ECDSA key fingerprint is SHA256:BXi4c2xCO8+Y+Z4sFGMsuksSvnYT99y6fKbgYx28Q54.</span><br><span class="hljs-string">ECDSA key fingerprint is MD5:ae:2e:32:9f:cd:8d:09:13:cb:4d:a0:70:9c:72:9f:c5.</span><br><span class="hljs-string">Are you sure you want to continue connecting (yes/no)? yes</span><br><span class="hljs-string">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span><br><span class="hljs-string">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span><br><span class="hljs-string">root@linux121&#x27;</span>s password: <br><br>Number of key(s) added: 1<br><br>Now try logging into the machine, with:   <span class="hljs-string">&quot;ssh &#x27;linux121&#x27;&quot;</span><br>and check to make sure that only the key(s) you wanted were added.<br><br></code></pre></td></tr></table></figure>
+<p>此时我们查看Linux121的<code>~/.ssh/</code>目录会自动生成一个<code>authorized_keys</code>文件，该文件保存了其他Linux服务器的公钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@linux121 .ssh]<span class="hljs-comment"># cat authorized_keys </span><br>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDU/RQHgvU/fJfv4IzVDggJSIaE246nb+IdcjqcssW3CC/OLmkrOoUp6tmeXLvXffidhAyuzOnB5MYZjy5wNlyHINf5kYYO2gtdmDEN7MTDjCGOOUHc5xU10NMi+kLMPvUPLi8x0LGvnwuVrvxqBMTSroF9gvlLFWF+pR3T6I9hsBCL9QZsE3eK4V3z0N1NYvzXANvO5mak3TtauGCyKjjij8TYiIc7/NPslnl3tUOQlC5a4j84UTwsC+LNQ0JCPnsXcu3RoJz8fYMATaz7OuGHyrKPXz+ARFCK5UWRwdx2HJ6uTnnOX7ogGO7jAVvTL/rfxNDPFH+dJa1H3qrfp9HD root@linux122<br>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDLRPldkAxFvE2Tq6/WZ59ppAPdFHlqKHPMA++CjGfAkDh/gBdYnGbUuMBB+zZ0TXkoyajGotyE5nDrOrZxqklNzPDxz/81gsc2ezTCwe0/MyPg9NNO5s/VdM6bhCvm4HjKyWTp/MbJeZf9zkPWnAAIK9UFMzM1+qwD4nBPefNZ64TB+aWRcXtmVO96uAoW2/PjxXcc/M0APB71Q+zLJ7gMUUCOvroYxvBubOnQRAp51DkgR/Q7RYYcZUvDPXHjEdrke550G2+P8Tgnl6rLbE1wrQTC216LQItulDBjEHDS7C3IhzW1SQryTBRgaTsLNtjLxdC4hW4Xw3KGIusnLcWL root@linux123<br></code></pre></td></tr></table></figure>
+<p>当然，不要忘记Linux121也要把自己的公钥追加到<code>authorized_keys</code>,所以需要在Linux121上执行一次<code>ssh-copy-id linux121</code>,只有这样，<code>authorized_keys</code>才拥有所有的服务器公钥。<br><strong>第三步：Linux1的authorized_keys分发给所有的Linux服务器</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">scp authorized_keys Linux122:<span class="hljs-variable">$PWD</span><br>scp authorized_keys Linux123:<span class="hljs-variable">$PWD</span><br>...<br></code></pre></td></tr></table></figure>
+<p>此时就可以通过ssh免密登录所有的Linux服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#ssh ipAddress</span><br>ssh Linux122<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -330,6 +333,13 @@
             <div>
               <div class="post-metas my-3">
   
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+    </div>
   
 </div>
 
@@ -339,8 +349,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>https://alex3070.github.io/2023/08/09/hello-world/</div>
+      <div>多台linux服务器实现ssh免密登录</div>
+      <div>https://alex3070.github.io/2023/08/20/多台linux服务器实现ssh免密登录/</div>
     </div>
     <div class="license-meta">
       
@@ -352,7 +362,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月9日</div>
+          <div>2023年8月20日</div>
         </div>
       
       
@@ -384,15 +394,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/10/blog/" title="blog">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">blog</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/08/10/blog/" title="blog">
+                        <span class="hidden-mobile">blog</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
