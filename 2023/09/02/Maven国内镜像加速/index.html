@@ -16,24 +16,32 @@
   <meta name="author" content="Alex Ma">
   <meta name="keywords" content="">
   
-    <meta name="description" content="ssh基于密钥的免密登录假设我们要在三台Linux服务器（Linux121、Linux122、Linux123）上实现免密登录第一步：在三台Linux服务器上生成公钥和私钥 123#ssh-keygen [参数]#-t 指定密钥创建的类型，SSH-v1可选的值为rsa1，SSH-v2可选的值为rsa或dsassh-keygen -t rsa 执行结果： 1234567891011121314151">
+    <meta name="description" content="Maven是什么Apache Maven是目前主流的项目管理工具，但国内使用Maven下载软件时会非常慢，因为是从官方源下载。这时候就需要使用Maven的国内镜像源，下面提供国内三个比较主流的镜像源：  阿里云 https:&#x2F;&#x2F;developer.aliyun.com&#x2F;mvn&#x2F;guide 腾讯云 https:&#x2F;&#x2F;mirrors.cloud.tencent.com&#x2F; 华为云 https:&#x2F;&#x2F;mirr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多台linux服务器实现ssh免密登录">
-<meta property="og:url" content="https://alex3070.github.io/2023/08/20/%E5%A4%9A%E5%8F%B0linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/index.html">
+<meta property="og:title" content="Maven国内镜像加速">
+<meta property="og:url" content="https://alex3070.github.io/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/index.html">
 <meta property="og:site_name" content="Alex Blog">
-<meta property="og:description" content="ssh基于密钥的免密登录假设我们要在三台Linux服务器（Linux121、Linux122、Linux123）上实现免密登录第一步：在三台Linux服务器上生成公钥和私钥 123#ssh-keygen [参数]#-t 指定密钥创建的类型，SSH-v1可选的值为rsa1，SSH-v2可选的值为rsa或dsassh-keygen -t rsa 执行结果： 1234567891011121314151">
+<meta property="og:description" content="Maven是什么Apache Maven是目前主流的项目管理工具，但国内使用Maven下载软件时会非常慢，因为是从官方源下载。这时候就需要使用Maven的国内镜像源，下面提供国内三个比较主流的镜像源：  阿里云 https:&#x2F;&#x2F;developer.aliyun.com&#x2F;mvn&#x2F;guide 腾讯云 https:&#x2F;&#x2F;mirrors.cloud.tencent.com&#x2F; 华为云 https:&#x2F;&#x2F;mirr">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-20T12:14:34.000Z">
-<meta property="article:modified_time" content="2023-08-20T13:29:02.308Z">
+<meta property="og:image" content="https://alex3070.github.io/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/aliyun_maven.png">
+<meta property="og:image" content="https://alex3070.github.io/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/Tencent_maven1.png">
+<meta property="og:image" content="https://alex3070.github.io/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/Tencent_maven2.png">
+<meta property="og:image" content="https://alex3070.github.io/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/huawei_maven.png">
+<meta property="og:image" content="https://alex3070.github.io/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/huawei_maven1.png">
+<meta property="og:image" content="https://alex3070.github.io/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/idea_maven_setting.png">
+<meta property="og:image" content="https://alex3070.github.io/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/idea_maven1.png">
+<meta property="article:published_time" content="2023-09-02T06:04:25.000Z">
+<meta property="article:modified_time" content="2023-09-02T07:30:00.981Z">
 <meta property="article:author" content="Alex Ma">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Maven、IDEA">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alex3070.github.io/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/aliyun_maven.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>多台linux服务器实现ssh免密登录 - Alex Blog</title>
+  <title>Maven国内镜像加速 - Alex Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -226,7 +234,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="多台linux服务器实现ssh免密登录"></span>
+            <span id="subtitle" data-typed-text="Maven国内镜像加速"></span>
           
         </div>
 
@@ -237,8 +245,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-20 20:14" pubdate>
-          2023年8月20日 晚上
+        <time datetime="2023-09-02 14:04" pubdate>
+          2023年9月2日 下午
         </time>
       </span>
     
@@ -249,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          1.2k 字
         
       </span>
     
@@ -260,7 +268,7 @@
         
         
         
-          23 分钟
+          10 分钟
         
       </span>
     
@@ -305,27 +313,41 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">多台linux服务器实现ssh免密登录</h1>
+            <h1 id="seo-header">Maven国内镜像加速</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="ssh基于密钥的免密登录"><a href="#ssh基于密钥的免密登录" class="headerlink" title="ssh基于密钥的免密登录"></a>ssh基于密钥的免密登录</h2><p>假设我们要在三台Linux服务器（Linux121、Linux122、Linux123）上实现免密登录<br><strong>第一步：在三台Linux服务器上生成公钥和私钥</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#ssh-keygen [参数]</span><br><span class="hljs-comment">#-t 指定密钥创建的类型，SSH-v1可选的值为rsa1，SSH-v2可选的值为rsa或dsa</span><br>ssh-keygen -t rsa<br></code></pre></td></tr></table></figure>
-<p>执行结果：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh-keygen -t rsa<br>Generating public/private rsa key pair.<br>Enter file <span class="hljs-keyword">in</span> <span class="hljs-built_in">which</span> to save the key (/root/.ssh/id_rsa): <br>Your identification has been saved <span class="hljs-keyword">in</span> /root/.ssh/id_rsa.<br>Your public key has been saved <span class="hljs-keyword">in</span> /root/.ssh/id_rsa.pub.<br>The key fingerprint is:<br>SHA256:YQPA+p6fvsLr1Y7mnZVnIsCxXslf+tiOGLbv/zFTSJ0 root@linux122<br>The key<span class="hljs-string">&#x27;s randomart image is:</span><br><span class="hljs-string">+---[RSA 2048]----+</span><br><span class="hljs-string">|   ....          |</span><br><span class="hljs-string">|    .  .       ..|</span><br><span class="hljs-string">|   .  . +     .E.|</span><br><span class="hljs-string">|  .  . = +   . . |</span><br><span class="hljs-string">|   .  + S   . . .|</span><br><span class="hljs-string">|    .. + . +   . |</span><br><span class="hljs-string">|   o .o = * o +  |</span><br><span class="hljs-string">|    =..* B O   + |</span><br><span class="hljs-string">|   .oBB.*o=o=..  |</span><br><span class="hljs-string">+----[SHA256]-----+</span><br></code></pre></td></tr></table></figure>
-<p>使用<code>ssh-kengen</code>会在<code>~/.ssh/</code>目录下生成两个文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">id_rsa：私钥文件<br>id_rsa.pub：公钥文件<br></code></pre></td></tr></table></figure>
-<p><strong>第二步：以一台Linux服务器（Linux121）作为主机，其他Linux服务器（Linux122、Linux123）将公钥发送给Linux121</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#ssh-copy-id 主机名/IP地址</span><br>ssh-copy-id Linux121<br></code></pre></td></tr></table></figure>
-<p>执行结果：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@linux123 .ssh]<span class="hljs-comment"># ssh-copy-id linux121</span><br>/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: <span class="hljs-string">&quot;/root/.ssh/id_rsa.pub&quot;</span><br>The authenticity of host <span class="hljs-string">&#x27;linux121 (192.168.80.121)&#x27;</span> can<span class="hljs-string">&#x27;t be established.</span><br><span class="hljs-string">ECDSA key fingerprint is SHA256:BXi4c2xCO8+Y+Z4sFGMsuksSvnYT99y6fKbgYx28Q54.</span><br><span class="hljs-string">ECDSA key fingerprint is MD5:ae:2e:32:9f:cd:8d:09:13:cb:4d:a0:70:9c:72:9f:c5.</span><br><span class="hljs-string">Are you sure you want to continue connecting (yes/no)? yes</span><br><span class="hljs-string">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed</span><br><span class="hljs-string">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys</span><br><span class="hljs-string">root@linux121&#x27;</span>s password: <br><br>Number of key(s) added: 1<br><br>Now try logging into the machine, with:   <span class="hljs-string">&quot;ssh &#x27;linux121&#x27;&quot;</span><br>and check to make sure that only the key(s) you wanted were added.<br><br></code></pre></td></tr></table></figure>
-<p>此时我们查看Linux121的<code>~/.ssh/</code>目录会自动生成一个<code>authorized_keys</code>文件，该文件保存了其他Linux服务器的公钥</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@linux121 .ssh]<span class="hljs-comment"># cat authorized_keys </span><br>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDU/RQHgvU/fJfv4IzVDggJSIaE246nb+IdcjqcssW3CC/OLmkrOoUp6tmeXLvXffidhAyuzOnB5MYZjy5wNlyHINf5kYYO2gtdmDEN7MTDjCGOOUHc5xU10NMi+kLMPvUPLi8x0LGvnwuVrvxqBMTSroF9gvlLFWF+pR3T6I9hsBCL9QZsE3eK4V3z0N1NYvzXANvO5mak3TtauGCyKjjij8TYiIc7/NPslnl3tUOQlC5a4j84UTwsC+LNQ0JCPnsXcu3RoJz8fYMATaz7OuGHyrKPXz+ARFCK5UWRwdx2HJ6uTnnOX7ogGO7jAVvTL/rfxNDPFH+dJa1H3qrfp9HD root@linux122<br>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDLRPldkAxFvE2Tq6/WZ59ppAPdFHlqKHPMA++CjGfAkDh/gBdYnGbUuMBB+zZ0TXkoyajGotyE5nDrOrZxqklNzPDxz/81gsc2ezTCwe0/MyPg9NNO5s/VdM6bhCvm4HjKyWTp/MbJeZf9zkPWnAAIK9UFMzM1+qwD4nBPefNZ64TB+aWRcXtmVO96uAoW2/PjxXcc/M0APB71Q+zLJ7gMUUCOvroYxvBubOnQRAp51DkgR/Q7RYYcZUvDPXHjEdrke550G2+P8Tgnl6rLbE1wrQTC216LQItulDBjEHDS7C3IhzW1SQryTBRgaTsLNtjLxdC4hW4Xw3KGIusnLcWL root@linux123<br></code></pre></td></tr></table></figure>
-<p>当然，不要忘记Linux121也要把自己的公钥追加到<code>authorized_keys</code>,所以需要在Linux121上执行一次<code>ssh-copy-id linux121</code>,只有这样，<code>authorized_keys</code>才拥有所有的服务器公钥。<br><strong>第三步：Linux1的authorized_keys分发给所有的Linux服务器</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">scp authorized_keys Linux122:<span class="hljs-variable">$PWD</span><br>scp authorized_keys Linux123:<span class="hljs-variable">$PWD</span><br>...<br></code></pre></td></tr></table></figure>
-<p>此时就可以通过ssh免密登录所有的Linux服务器</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#ssh ipAddress</span><br>ssh Linux122<br></code></pre></td></tr></table></figure>
+                <h2 id="Maven是什么"><a href="#Maven是什么" class="headerlink" title="Maven是什么"></a>Maven是什么</h2><p>Apache Maven是目前主流的项目管理工具，但国内使用Maven下载软件时会非常慢，因为是从官方源下载。<br>这时候就需要使用Maven的国内镜像源，下面提供国内三个比较主流的镜像源：</p>
+<ul>
+<li>阿里云 <a target="_blank" rel="noopener" href="https://developer.aliyun.com/mvn/guide">https://developer.aliyun.com/mvn/guide</a></li>
+<li>腾讯云 <a target="_blank" rel="noopener" href="https://mirrors.cloud.tencent.com/">https://mirrors.cloud.tencent.com/</a></li>
+<li>华为云 <a target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/">https://mirrors.huaweicloud.com/</a></li>
+</ul>
+<h2 id="如何获取Maven镜像源"><a href="#如何获取Maven镜像源" class="headerlink" title="如何获取Maven镜像源"></a>如何获取Maven镜像源</h2><h3 id="阿里云："><a href="#阿里云：" class="headerlink" title="阿里云："></a>阿里云：</h3><p>打开阿里云的网址，点击<code>maven 配置指南</code>,在右侧栏就能看到阿里云的镜像源信息：</p>
+<img src="/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/aliyun_maven.png" srcset="/img/loading.gif" lazyload class="" title="阿里云Maven镜像源">
+
+<h3 id="腾讯云："><a href="#腾讯云：" class="headerlink" title="腾讯云："></a>腾讯云：</h3><p>打开腾讯云的网址，用快捷键<code>CTRL+F</code>网页搜索<code>Maven</code>，找到Maven，点击右边的”查看”按钮，就能看到腾讯云的镜像源信息：</p>
+<img src="/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/Tencent_maven1.png" srcset="/img/loading.gif" lazyload class="" title="腾讯云Maven镜像源">
+
+<img src="/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/Tencent_maven2.png" srcset="/img/loading.gif" lazyload class="" title="腾讯云Maven镜像源">
+
+<h3 id="华为云："><a href="#华为云：" class="headerlink" title="华为云："></a>华为云：</h3><p>打开华为云的网址，在搜索栏输入<code>Maven</code>，在搜索结果里点击<code>Maven</code>，就能看到华为云的镜像源信息：</p>
+<img src="/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/huawei_maven.png" srcset="/img/loading.gif" lazyload class="" title="华为云Maven镜像源">
+
+<img src="/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/huawei_maven1.png" srcset="/img/loading.gif" lazyload class="" title="华为云Maven镜像源">
+
+<h2 id="IDEA如何配置Maven镜像源"><a href="#IDEA如何配置Maven镜像源" class="headerlink" title="IDEA如何配置Maven镜像源"></a>IDEA如何配置Maven镜像源</h2><p>打开IDEA的设置，File -&gt; Settings，搜索Maven的设置信息：</p>
+<img src="/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/idea_maven_setting.png" srcset="/img/loading.gif" lazyload class="">
+
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">Maven home directory: Maven插件的根目录<br><span class="hljs-keyword">User</span> <span class="hljs-title">setting</span> file: Maven的设置文件，把镜像源放在setting.xml里面<br>Local repository: Maven下载的jar包目录，可以改到D盘或E盘<br></code></pre></td></tr></table></figure>
+
+<img src="/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/idea_maven1.png" srcset="/img/loading.gif" lazyload class="">
+
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mirror</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>aliyunmaven<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>*<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>阿里云公共仓库<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">mirror</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>nexus-tencentyun<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>*<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>Nexus tencentyun<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>http://mirrors.cloud.tencent.com/nexus/repository/maven-public/<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span> <br><br><span class="hljs-tag">&lt;<span class="hljs-name">mirror</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>huaweicloud<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>*<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>https://repo.huaweicloud.com/repository/maven/<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
@@ -337,7 +359,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+        <a href="/tags/Maven%E3%80%81IDEA/" class="print-no-link">#Maven、IDEA</a>
       
     </div>
   
@@ -349,8 +371,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>多台linux服务器实现ssh免密登录</div>
-      <div>https://alex3070.github.io/2023/08/20/多台linux服务器实现ssh免密登录/</div>
+      <div>Maven国内镜像加速</div>
+      <div>https://alex3070.github.io/2023/09/02/Maven国内镜像加速/</div>
     </div>
     <div class="license-meta">
       
@@ -362,7 +384,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月20日</div>
+          <div>2023年9月2日</div>
         </div>
       
       
@@ -394,18 +416,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/02/Maven%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/" title="Maven国内镜像加速">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Maven国内镜像加速</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/09/hello-world/" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2023/08/20/%E5%A4%9A%E5%8F%B0linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/" title="多台linux服务器实现ssh免密登录">
+                        <span class="hidden-mobile">多台linux服务器实现ssh免密登录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
